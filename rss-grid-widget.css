@@ -1,0 +1,101 @@
+.grid-rss {
+  background-color: #17323f;
+  padding: 32px;
+}
+.grid-rss .grid-rss__title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.grid-rss .grid-rss__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -16px;
+}
+.grid-rss .grid-rss__row .grid-rss__col {
+  padding: 16px;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.grid-rss .grid-rss__item {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  border-bottom: 0;
+}
+.grid-rss .grid-rss__item:hover .grid-rss__item-title .grid-rss__item-title__text, .grid-rss .grid-rss__item:focus .grid-rss__item-title .grid-rss__item-title__text {
+  text-decoration: underline;
+}
+.grid-rss .grid-rss__item .grid-rss__img-container {
+  margin-bottom: 16px;
+  padding-bottom: 75%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.grid-rss .grid-rss__item .grid-rss__img-container img {
+  width: 100%;
+  height: auto;
+}
+.grid-rss .grid-rss__item .grid-rss__item-title svg {
+  display: inline;
+  width: 13px;
+  height: 13px;
+  margin-left: 3px;
+  fill: #5ac8fa;
+}
+.grid-rss .grid-rss__item.grid-rss__item--show-more {
+  display: block;
+  text-decoration: none;
+  padding-bottom: 75%;
+  width: 100%;
+  border: 1px solid #5ac8fa;
+  background-color: transparent;
+  position: relative;
+  transition: background-color 0.15s ease-in-out;
+}
+.grid-rss .grid-rss__item.grid-rss__item--show-more:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.grid-rss .grid-rss__item.grid-rss__item--show-more svg {
+  position: absolute;
+  fill: #5ac8fa;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (min-width: 576px) {
+  .grid-rss {
+    padding: 40px;
+  }
+  .grid-rss .grid-rss__title {
+    font-size: 24px;
+  }
+  .grid-rss .grid-rss__row .grid-rss__col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .grid-rss {
+    padding: 40px 60px;
+  }
+  .grid-rss .grid-rss__title {
+    font-size: 28px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .grid-rss .grid-rss__row .grid-rss__col {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+/*# sourceMappingURL=rss-grid-widget.css.map */
