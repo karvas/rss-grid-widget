@@ -17,6 +17,7 @@
       padding: 12px;
       flex: 0 0 100%;
       max-width: 100%;
+      box-sizing: border-box;
     }
   }
   .grid-rss__item {
@@ -162,6 +163,7 @@
 
   .grid-rss {
     .grid-rss__row {
+      flex-wrap: nowrap;
       .grid-rss__col {
         flex: 0 0 25%;
         max-width: 25%;
