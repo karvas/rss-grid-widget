@@ -1,13 +1,16 @@
 (function () {
-  
-  const container = document.querySelector('[data-src-rss]');
-  const rssUrl = container.getAttribute('data-src-rss');
-  
-  const _addHtml = function (items, description, url) {
-    let descriptionHtml = `<h2 class="grid-rss__title">${description.innerHTML}</h2>`;
-    let itemsHtml = `<div class="grid-rss__row">`;
-    items.forEach(el => {
-      itemsHtml += `
+
+    const container = document.querySelector('[data-src-rss]');
+    const rssUrl = container.getAttribute('data-src-rss');
+    const containerInnerHtml = `<div class="grid-rss__inner"></div>`;
+
+    const _addHtml = function (items, description, url) {
+        container.insertAdjacentHTML('beforeend', containerInnerHtml);
+        const containerInner = container.querySelector('.grid-rss__inner');
+        let descriptionHtml = `<h2 class="grid-rss__title">${description.innerHTML}</h2>`;
+        let itemsHtml = `<div class="grid-rss__row">`;
+        items.forEach(el => {
+            itemsHtml += `
         <div class="grid-rss__col">
           <a href="${el.querySelector('link').innerHTML}" class="grid-rss__item" target="_blank">
             <div>
@@ -22,8 +25,8 @@
           </a>
         </div>
       `;
-    });
-    itemsHtml += `<div class="grid-rss__col">
+        });
+        itemsHtml += `<div class="grid-rss__col">
           <a href="${url.innerHTML}" class="grid-rss__item grid-rss__item--show-more" target="_blank">
             <svg aria-hidden="true" focusable="false" id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.6 121.6">
               <g id="add">
@@ -32,44 +35,44 @@
             </svg>
           </a>
         </div>`;
-    itemsHtml += `</div>`;
-    container.insertAdjacentHTML('beforeend', descriptionHtml);
-    container.insertAdjacentHTML('beforeend', itemsHtml);
-    container.removeAttribute('data-src-rss');
-    container.classList.add('grid-rss');
-  };
-  
-  const _fetchItems = function () {
-    fetch(rssUrl)
-      .then(response => response.text())
-      .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
-      .then(data => {
-        console.log('Rss widget:');
-        console.log(data);
-        let items = data.querySelectorAll('item');
-        let description = data.querySelector('description');
-        let url = data.querySelectorAll('link')[1];
-        let itemsArray = Array.from(items);
-        if (itemsArray.length > 3) {
-          itemsArray = itemsArray.slice(0, 3);
-        }
-        _addHtml(itemsArray, description, url);
-      });
-  };
-  
-  const _addStyles = function () {
-    const link = document.createElement('link');
-    link.setAttribute('rel', 'stylesheet');
-    // link.setAttribute('href', 'http://127.0.0.1:8080/rss-grid-widget.css');
-    link.setAttribute('href', 'https://karvas.github.io/rss-grid-widget/rss-grid-widget.css');
-    document.head.appendChild(link);
-  };
-  
-  const _init = function () {
-    _addStyles();
-    _fetchItems();
-  };
-  
-  _init();
-  
+        itemsHtml += `</div>`;
+        containerInner.insertAdjacentHTML('beforeend', descriptionHtml);
+        containerInner.insertAdjacentHTML('beforeend', itemsHtml);
+        container.removeAttribute('data-src-rss');
+        container.classList.add('grid-rss');
+    };
+
+    const _fetchItems = function () {
+        fetch(rssUrl)
+            .then(response => response.text())
+            .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
+            .then(data => {
+                console.log('Rss widget:');
+                console.log(data);
+                let items = data.querySelectorAll('item');
+                let description = data.querySelector('description');
+                let url = data.querySelectorAll('link')[1];
+                let itemsArray = Array.from(items);
+                if (itemsArray.length > 3) {
+                    itemsArray = itemsArray.slice(0, 3);
+                }
+                _addHtml(itemsArray, description, url);
+            });
+    };
+
+    const _addStyles = function () {
+        const link = document.createElement('link');
+        link.setAttribute('rel', 'stylesheet');
+        // link.setAttribute('href', 'http://127.0.0.1:8080/rss-grid-widget.css');
+        link.setAttribute('href', 'https://karvas.github.io/rss-grid-widget/rss-grid-widget.css');
+        document.head.appendChild(link);
+    };
+
+    const _init = function () {
+        _addStyles();
+        _fetchItems();
+    };
+
+    _init();
+
 })();

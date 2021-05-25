@@ -2,6 +2,11 @@
   background-color: #17323f;
   padding: 32px;
 }
+.grid-rss .grid-rss__inner {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
 .grid-rss .grid-rss__title {
   color: #fff;
   font-size: 22px;
@@ -131,7 +136,7 @@
     padding-left: 0;
   }
   .grid-rss .grid-rss__item.grid-rss__item--show-more {
-    padding-bottom: 100%;
+    padding-bottom: 90%;
     border: 1px solid #5ac8fa;
     background-color: transparent;
   }
@@ -143,6 +148,11 @@
   .grid-rss .grid-rss__row .grid-rss__col {
     flex: 0 0 25%;
     max-width: 25%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .grid-rss .grid-rss__item .grid-rss__item-title {
+    font-size: 20px;
   }
 }
 
