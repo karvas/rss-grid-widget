@@ -4,17 +4,23 @@
     const rssUrl = container.getAttribute('data-src-rss');
     const containerInnerHtml = `<div class="grid-rss__inner"></div>`;
 
-    const _addHtml = function (items, description, url) {
+    const _addHtml = function (items, description, url, category) {
         container.insertAdjacentHTML('beforeend', containerInnerHtml);
         const containerInner = container.querySelector('.grid-rss__inner');
         let descriptionHtml = `<h2 class="grid-rss__title">${description.innerHTML}</h2>`;
         let itemsHtml = `<div class="grid-rss__row">`;
+        let iconVideo = ``;
+        if (category === 'Vidéo') {
+            iconVideo = `<svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" class="svg-inline--fa fa-youtube fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg>`
+        }
         items.forEach(el => {
             itemsHtml += `
         <div class="grid-rss__col">
           <a href="${el.querySelector('link').innerHTML}" class="grid-rss__item" target="_blank">
             <div>
-                <div class="grid-rss__img-container" style="background-image:url('${el.querySelector('enclosure').getAttribute('url')}');"></div>
+                <div class="grid-rss__img-container" style="background-image:url('${el.querySelector('enclosure').getAttribute('url')}');">
+                    ${iconVideo}
+                </div>
             </div>
             <div>
                 <div class="grid-rss__item-title">
@@ -52,19 +58,20 @@
                 let items = data.querySelectorAll('item');
                 let description = data.querySelector('description');
                 let url = data.querySelectorAll('link')[1];
+                let category = data.querySelector('category').innerHTML;
                 let itemsArray = Array.from(items);
                 if (itemsArray.length > 3) {
                     itemsArray = itemsArray.slice(0, 3);
                 }
-                _addHtml(itemsArray, description, url);
+                _addHtml(itemsArray, description, url, category);
             });
     };
 
     const _addStyles = function () {
         const link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
-        // link.setAttribute('href', 'http://127.0.0.1:8080/rss-grid-widget.css');
-        link.setAttribute('href', 'https://karvas.github.io/rss-grid-widget/rss-grid-widget.css');
+        link.setAttribute('href', 'http://localhost:63342/rss-grid-widget.css');
+        // link.setAttribute('href', 'https://karvas.github.io/rss-grid-widget/rss-grid-widget.css');
         document.head.appendChild(link);
     };
 

@@ -52,10 +52,22 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 }
 .grid-rss .grid-rss__item .grid-rss__img-container img {
   width: 100%;
   height: auto;
+}
+.grid-rss .grid-rss__item .grid-rss__img-container svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  -webkit-filter: drop-shadow(0 0 24px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 0 24px rgba(0, 0, 0, 0.7));
 }
 .grid-rss .grid-rss__item .grid-rss__item-title svg {
   display: inline;
@@ -153,6 +165,10 @@
 @media only screen and (min-width: 1200px) {
   .grid-rss .grid-rss__item .grid-rss__item-title {
     font-size: 20px;
+  }
+  .grid-rss .grid-rss__item .grid-rss__img-container svg {
+    width: 80px;
+    height: 80px;
   }
 }
 
