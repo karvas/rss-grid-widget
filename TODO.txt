@@ -1,2 +1,0 @@
-- Run local server
-http-server

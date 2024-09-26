@@ -19,7 +19,7 @@
     flex-wrap: wrap;
     margin: -12px;
     .grid-rss__col {
-      padding: 12px;
+      padding: .75em;
       flex: 0 0 100%;
       max-width: 100%;
       box-sizing: border-box;
@@ -33,30 +33,36 @@
     &:hover, &:focus {
       .grid-rss__item-title {
         .grid-rss__item-title__text {
-          text-decoration: underline;
+          text-decoration: underline .0625em hsla(0, 0%, 100%, 1);
+          text-decoration-color: rgba(90, 200, 250, 1);
+          color: #5ac8fa;
         }
+      }
+      .grid-rss__img-container {
+        transition: opacity .15s ease-in-out;
+        opacity: 0.7;
       }
     }
     > div {
       &:nth-child(1) {
-        flex: 0 0 35%;
-        max-width: 35%;
-        padding-right: 8px;
+        flex: 0 0 8em;
+        max-width: 8em;
       }
       &:nth-child(2) {
-        flex: 0 0 65%;
-        max-width: 65%;
-        padding-left: 8px;
+        flex: 1 1 auto;
+        padding-left: 1em;
       }
     }
     .grid-rss__img-container {
-      margin-bottom: 16px;
-      padding-bottom: 75%;
+      padding-bottom: 72%;
       width: 100%;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+      border-radius: .5em;
+      transition: opacity .15s ease-in-out;
+      opacity: 1;
       img {
         width: 100%;
         height: auto;
@@ -74,38 +80,111 @@
       }
     }
     .grid-rss__item-title {
-      .grid-rss__item-title__text {}
+      .grid-rss__item-title__text {
+        transition: color .25s ease-in-out, text-decoration-color .25s ease-in-out;
+        text-decoration: underline .0625em hsla(0, 0%, 100%, 0);
+      }
       svg {
         display: inline;
-        width: 13px;
-        height: 13px;
+        width: .9375em;
+        height: .9375em;
         margin-left: 3px;
+        margin-top: -4px;
         fill: #5ac8fa;
       }
     }
     &.grid-rss__item--show-more {
       display: block;
       text-decoration: none;
-      padding-bottom: 20%;
+      height: 5em;
       width: 100%;
-      background-color: #06475D;
       position: relative;
       transition: background-color .15s ease-in-out;
+      border-radius: .5em;
+      border: 1px solid #5ac8fa;
+      color: #5ac8fa;
       &:hover {
         background-color: #5ac8fa;
-        svg {
-          fill: #17323f;
+        color: #17323f;
+        > .__inner {
+          > div {
+            > div {
+              &:nth-child(1) {
+                svg {
+                  fill: #17323f;
+                }
+              }
+              &:nth-child(2) {
+                p {
+                  > .__text {
+                    text-decoration: underline .0625em rgba(23, 50, 63, 1);
+                  }
+                  > .__icon-external {
+                    svg {
+                      fill: #17323f;
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
-      svg {
+      > .__inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        left: 0;
         position: absolute;
-        fill: #5ac8fa;
-        width: 32px;
-        height: 32px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: fill .15s ease-in-out;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        > div {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          > div {
+            text-align: center;
+            &:nth-child(1) {
+              padding-right: 1.5em;
+              text-align: center;
+              svg {
+                fill: #5ac8fa;
+                height: auto;
+                transition: fill .15s ease-in-out;
+                width: 2em;
+                display: inline-block;
+              }
+            }
+            &:nth-child(2) {
+              text-align: center;
+              p {
+                font-size: 1rem;
+                font-weight: 400;
+                margin: 0;
+                padding: 0;
+                text-transform: uppercase;
+                > .__text {
+                  text-decoration: underline .0625em rgba(96, 198, 242, 0);
+                  transition: text-decoration-color .15s ease-in-out, color .15s ease-in-out;
+                }
+                > .__icon-external {
+                  display: inline-block;
+                  margin-left: .25em;
+                  transform: translateY(-.125rem);
+                  svg {
+                    fill: #5ac8fa;
+                    height: .75em;
+                    transition: fill .15s ease-in-out;
+                    width: .75em;
+                    display: inline;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -150,6 +229,7 @@
       .grid-rss__col {
         flex: 0 0 50%;
         max-width: 50%;
+        padding: .9375em;
       }
     }
     .grid-rss__item {
@@ -159,6 +239,7 @@
           flex: initial;
           max-width: initial;
           padding-right: 0;
+          margin-bottom: .75em;
         }
         &:nth-child(2) {
           flex: initial;
@@ -168,8 +249,22 @@
       }
       &.grid-rss__item--show-more {
         padding-bottom: 90%;
-        border: 1px solid #5ac8fa;
-        background-color: transparent;
+        > .__inner {
+          > div {
+            display: block;
+            padding: 1em;
+            > div {
+              &:nth-child(1) {
+                padding-right: 0;
+                margin-bottom: 1.25em;
+                svg {
+                  width: 3.75em;
+                }
+              }
+              &:nth-child(2) {}
+            }
+          }
+        }
       }
     }
   }
@@ -194,8 +289,25 @@
 
   .grid-rss {
     .grid-rss__item {
-      .grid-rss__item-title {
-        font-size: 20px;
+      &.grid-rss__item--show-more {
+        > .__inner {
+          > div {
+            > div {
+              &:nth-child(1) {
+                svg {
+                  width: 4em;
+                }
+              }
+              &:nth-child(2) {
+                &:nth-child(2) {
+                  p {
+                    font-size: 1.125rem;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       .grid-rss__img-container {
         svg {
