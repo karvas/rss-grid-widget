@@ -90,8 +90,8 @@
   const _addStyles = function () {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('href', 'http://localhost:8080/rss-grid-widget.css');
-    // link.setAttribute('href', 'https://karvas.github.io/rss-grid-widget/rss-grid-widget.css');
+    // link.setAttribute('href', 'http://localhost:8080/rss-grid-widget.css');
+    link.setAttribute('href', 'https://karvas.github.io/rss-grid-widget/rss-grid-widget.css');
     document.head.appendChild(link);
   };
 
