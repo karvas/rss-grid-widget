@@ -8,14 +8,14 @@
     container.insertAdjacentHTML('beforeend', containerInnerHtml);
     const containerInner = container.querySelector('.grid-rss__inner');
     let descriptionHtml = `<h2 class="grid-rss__title">${description.innerHTML}</h2>`;
-    let itemsHtml = `<div class="grid-rss__row">`;
+    let itemsHtml = `<ul class="grid-rss__row">`;
     let iconVideo = ``;
     if (category === 'Vidéo') {
       iconVideo = `<svg aria-hidden="true" alt="" focusable="false" data-prefix="fab" data-icon="youtube" class="svg-inline--fa fa-youtube fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg>`
     }
     items.forEach(el => {
       itemsHtml += `
-        <div class="grid-rss__col">
+        <li class="grid-rss__col">
           <a href="${el.querySelector('link').innerHTML}" class="grid-rss__item" title="${el.querySelector('title').innerHTML} (ouvre un nouvel onglet - site externe)" target="_blank">
             <div>
                 <div class="grid-rss__img-container" style="background-image:url('${el.querySelector('enclosure').getAttribute('url')}');">
@@ -37,10 +37,10 @@
                 </div>
             </div>
           </a>
-        </div>
+        </li>
       `;
     });
-    itemsHtml += `<div class="grid-rss__col">
+    itemsHtml += `<li class="grid-rss__col">
           <a href="${url.innerHTML}" class="grid-rss__item grid-rss__item--show-more" target="_blank">
             <div class="__inner">
                 <div>
@@ -62,8 +62,8 @@
                </div>
             </div>
           </a>
-        </div>`;
-    itemsHtml += `</div>`;
+        </li>`;
+    itemsHtml += `</ul>`;
     containerInner.insertAdjacentHTML('beforeend', descriptionHtml);
     containerInner.insertAdjacentHTML('beforeend', itemsHtml);
     container.removeAttribute('data-src-rss');
